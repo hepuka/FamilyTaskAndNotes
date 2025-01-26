@@ -12,7 +12,12 @@ import { IoMdDoneAll } from "react-icons/io";
 import { FaRegNoteSticky } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
 import { db } from "../firebase";
-import { collection, getCountFromServer } from "firebase/firestore";
+import {
+  collection,
+  getCountFromServer,
+  query,
+  where,
+} from "firebase/firestore";
 
 const Dashboard = () => {
   const currentUserData = JSON.parse(localStorage.getItem("currentuser"));
@@ -24,13 +29,25 @@ const Dashboard = () => {
 
   useEffect(() => {
     const todonumbers = collection(db, "todo");
+    const todonumbersq = query(
+      todonumbers,
+      where("author", "==", `${currentUserData.name}`)
+    );
     const completednumbers = collection(db, "completed");
+    const completednumbersq = query(
+      completednumbers,
+      where("author", "==", `${currentUserData.name}`)
+    );
     const notesnumbers = collection(db, "notes");
+    const notesnumbersq = query(
+      notesnumbers,
+      where("author", "==", `${currentUserData.name}`)
+    );
 
     const getCounts = async () => {
-      const snapshot = await getCountFromServer(todonumbers);
-      const snapshot2 = await getCountFromServer(completednumbers);
-      const snapshot3 = await getCountFromServer(notesnumbers);
+      const snapshot = await getCountFromServer(todonumbersq);
+      const snapshot2 = await getCountFromServer(completednumbersq);
+      const snapshot3 = await getCountFromServer(notesnumbersq);
       setTodonumber(snapshot.data().count);
       setCompletednumber(snapshot2.data().count);
       setNotesnumber(snapshot3.data().count);
