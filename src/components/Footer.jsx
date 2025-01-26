@@ -4,7 +4,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="flex flex-col justify-center items-center w-full mt-2 py-2 ">
+    <div className="flex flex-col justify-center items-center w-full sm:w-96 md:w-96  sm:px-8 md:px-8 px-8">
       <p className="text-xs mb-1">
         Készítette: Kun-Fagyal Zoltán &copy; {year}
       </p>

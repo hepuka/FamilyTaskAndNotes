@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container flex flex-col items-center justify-around mt-5 gap-3 h-screen dark:bg-gray-900">
+    <div className="container flex flex-col items-center justify-around mt-5 gap-3 h-screen dark:bg-gray-900 ">
       <div className="w-48 h-48">
         <img
           className="h-full w-full rounded-full"
@@ -43,7 +43,7 @@ const Login = () => {
         />
       </div>
 
-      <form className="w-full px-8">
+      <form className="w-full px-8 sm:w-96 md:w-96">
         <div className="mb-5">
           <label className="block mb-2 text-xs font-medium text-gray-700 dark:text-white">
             Email
@@ -93,9 +93,8 @@ const Login = () => {
           </Link>
         </div>
       </form>
-      <div>
-        <Footer />
-      </div>
+
+      <Footer />
     </div>
   );
 };
